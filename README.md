@@ -9,7 +9,7 @@ A comprehensive Python-based ETL (Extract, Transform, Load) pipeline that scrape
 - **Load**: Inserts data into a normalized MySQL database using parameterized queries
 - **Logging**: Detailed logging throughout the pipeline for monitoring and debugging
 - **Error Handling**: Robust error handling with graceful degradation
-- **Data Analysis and Visualization**: 
+- **Data Analysis and Visualization**: A comprehensive analytics report with descriptive visualizations
 
 ## Architecture
 
