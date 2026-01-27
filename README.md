@@ -9,7 +9,6 @@ A comprehensive Python-based ETL (Extract, Transform, Load) pipeline that scrape
 - **Load**: Inserts data into a normalized MySQL database using parameterized queries
 - **Logging**: Detailed logging throughout the pipeline for monitoring and debugging
 - **Error Handling**: Robust error handling with graceful degradation
-- **Analysis**: Analysis Report
 
 ## Architecture
 
@@ -91,6 +90,81 @@ For each product, the pipeline collects:
 | URL | Product page URL | String | https://amazon.com/... |
 | Reviews Count | Number of reviews | Integer | 45,678 |
 | Average Rating | Rating out of 5 stars | Decimal | 4.7 |
+
+## Setup Instructions
+
+### Prerequisites
+
+- Python 3.8 or higher
+- MySQL 5.7 or higher
+- pip (Python package manager)
+
+### Installation
+
+1. **Clone or download the project files**
+
+2. **Install Python dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+3. **Set up MySQL database**
+
+```bash
+# Log into MySQL
+mysql -u root -p
+
+# Create database
+CREATE DATABASE ecommerce_etl CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+# Create tables using the schema file
+mysql -u root -p ecommerce_etl < schema.sql
+```
+
+4. **Configure database credentials**
+
+Edit `etl_pipeline.py` and update the database configuration:
+
+```python
+DB_CONFIG = {
+    'host': 'localhost',
+    'database': 'ecommerce_etl',
+    'user': 'root',
+    'password': 'YOUR_MYSQL_PASSWORD',  # Update this
+}
+```
+
+## Usage
+
+### Running the ETL Pipeline
+
+```bash
+python etl_pipeline.py
+```
+
+This will:
+1. Scrape ~500 products from Amazon Best Sellers
+2. Clean and transform the data
+3. Load it into your MySQL database
+
+### Customizing the Pipeline
+
+You can modify the pipeline behavior by adjusting parameters:
+
+```python
+# Scrape more/fewer pages per category
+run_etl_pipeline(num_pages=10)  # Default is 5
+
+# Use custom database configuration
+custom_db = {
+    'host': 'remote-server.com',
+    'database': 'my_db',
+    'user': 'my_user',
+    'password': 'my_password'
+}
+run_etl_pipeline(num_pages=5, db_config=custom_db)
+```
 
 ### Function Reference
 
@@ -225,41 +299,46 @@ The pipeline provides detailed logging output:
 2026-01-27 10:35:49 - INFO - Time elapsed: 334.12 seconds
 ```
 
-## Policy Compliance and Ethical Considerations
-This document outlines the policy statement and compliance measures implemented for an Extract, Transform, Load (ETL) data scraping project targeting the website [https://www.amazon.com/best-sellers](https://www.amazon.com/best-sellers) using Python for scraping and MySQL for data storage.
+## Troubleshooting
 
-## Website Policy Statement
+### Common Issues
 
-**Website URL:** [https://www.amazon.com/best-sellers](https://www.amazon.com/best-sellers)
+**Issue**: `ModuleNotFoundError: No module named 'requests'`
+- **Solution**: Install dependencies with `pip install -r requirements.txt`
 
-**Policy:** Amazon.com is a commercial website, and web scraping activities are generally governed by its Terms of Service and `robots.txt` file. Unlike a practice site, Amazon is not designed for unrestricted scraping, and automated data extraction without explicit permission can be a violation of their policies. It's imperative to review and adhere to Amazon's specific `robots.txt` directives and Terms of Service.
+**Issue**: `mysql.connector.errors.ProgrammingError: Database 'ecommerce_etl' doesn't exist`
+- **Solution**: Create the database with `CREATE DATABASE ecommerce_etl;`
 
-**Disclaimer:** For any project targeting commercial websites like Amazon, it is absolutely crucial to **rigorously check the target website's `robots.txt` file (e.g., `https://www.amazon.com/robots.txt`) and its Terms of Service (usually found in the footer of the website).** These documents dictate what content can be scraped, at what rate, and for what purpose. Disregarding these can lead to IP blocking, legal action, or a breach of ethical and legal guidelines. Always ensure compliance and consider seeking legal counsel for commercial scraping operations.
+**Issue**: `Access denied for user 'root'@'localhost'`
+- **Solution**: Update the password in DB_CONFIG to match your MySQL password
 
-## Compliance Assurance
+**Issue**: Few products extracted (< 100)
+- **Solution**: Amazon's page structure may have changed. Update the CSS selectors in `_extract_products_from_page()`
 
-To ensure ethical scraping practices and avoid overloading the target server, the following compliance measures were implemented or considered:
+**Issue**: `requests.exceptions.HTTPError: 503`
+- **Solution**: Increase the delay between requests (e.g., `delay=5`)
 
-### 1. Rate Limiting (Throttling)
+## Best Practices
 
-*   **Methodology:** To prevent overwhelming Amazon's servers with requests and to mimic human browsing behavior, a deliberate, randomized delay was introduced between successive requests. This helps in distributing the load and reducing the risk of being identified as a bot or blocked.
+1. **Respectful Scraping**: The pipeline includes delays between requests to avoid overwhelming servers
+2. **Error Recovery**: Failures on individual products don't stop the entire pipeline
+3. **Transaction Safety**: Database operations use transactions with rollback on error
+4. **Incremental Updates**: ON DUPLICATE KEY UPDATE allows re-running without duplicates
 
-### 2. User-Agent Header
+## Future Enhancements
 
-*   **Methodology:** A custom `User-Agent` header was set for all HTTP requests to identify the scraping script. This practice allows server administrators to identify the source of requests if issues arise and can help in avoiding bot detection. It should accurately represent a legitimate browser, possibly with an appended identifier.
+- Add support for multiple e-commerce sites
+- Implement incremental updates (only fetch new/changed products)
+- Add data quality metrics and validation reports
+- Create data visualization dashboard
+- Add support for product images
+- Implement parallel scraping for faster extraction
+- Add email notifications on pipeline completion/failure
 
-### 3. Excluded Fields / Data Minimization
+## License
 
-*   **Methodology:** Only publicly available information directly relevant to the project's objectives (e.g., product titles, prices, ratings, availability, best-seller rank) was extracted.
+This project is for educational purposes. Be sure to comply with the target website's Terms of Service and robots.txt when scraping data.
 
-### 4. Error Handling and Retry Mechanisms
+## Contact
 
-*   **Methodology:** Robust error handling was implemented to gracefully manage network issues, temporary server unavailability (e.g., HTTP 429 Too Many Requests, 503 Service Unavailable), or connection timeouts. This included retry logic with exponential backoff to reattempt failed requests after increasing delays, further respecting server load.
-
-### 5. Data Storage and Retention
-
-*   **Methodology:** Scraped data was loaded into a local MySQL database. Data retention policies would dictate how long the data is stored and how it is secured. For this project, data is to be stored for analytical purposes, ensuring appropriate security measures for any collected data (even non-PII).
-
-## Conclusion
-
-This ETL project, when targeting commercial sites like Amazon, requires a robust framework for ethical data collection and server-respectful interaction. Thorough legal review and explicit consent (if required by Amazon's policies) are paramount for commercial or large-scale projects.
+For questions or issues, please check the logging output for detailed error messages.
