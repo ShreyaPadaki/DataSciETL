@@ -225,44 +225,7 @@ The pipeline provides detailed logging output:
 2026-01-27 10:35:49 - INFO - Time elapsed: 334.12 seconds
 ```
 
-## Troubleshooting
-
-### Common Issues
-
-**Issue**: `ModuleNotFoundError: No module named 'requests'`
-- **Solution**: Install dependencies with `pip install -r requirements.txt`
-
-**Issue**: `mysql.connector.errors.ProgrammingError: Database 'ecommerce_etl' doesn't exist`
-- **Solution**: Create the database with `CREATE DATABASE ecommerce_etl;`
-
-**Issue**: `Access denied for user 'root'@'localhost'`
-- **Solution**: Update the password in DB_CONFIG to match your MySQL password
-
-**Issue**: Few products extracted (< 100)
-- **Solution**: Amazon's page structure may have changed. Update the CSS selectors in `_extract_products_from_page()`
-
-**Issue**: `requests.exceptions.HTTPError: 503`
-- **Solution**: Increase the delay between requests (e.g., `delay=5`)
-
-## Best Practices
-
-1. **Respectful Scraping**: The pipeline includes delays between requests to avoid overwhelming servers
-2. **Error Recovery**: Failures on individual products don't stop the entire pipeline
-3. **Transaction Safety**: Database operations use transactions with rollback on error
-4. **Incremental Updates**: ON DUPLICATE KEY UPDATE allows re-running without duplicates
-
-## Future Enhancements
-
-- Add support for multiple e-commerce sites
-- Implement incremental updates (only fetch new/changed products)
-- Add data quality metrics and validation reports
-- Create data visualization dashboard
-- Add support for product images
-- Implement parallel scraping for faster extraction
-- Add email notifications on pipeline completion/failure
-
-# ETL Data Scraping Project: Amazon Best Sellers
-
+# Policy Compliance and Ethical Considerations
 This document outlines the policy statement and compliance measures implemented for an Extract, Transform, Load (ETL) data scraping project targeting the website [https://www.amazon.com/best-sellers](https://www.amazon.com/best-sellers) using Python for scraping and MySQL for data storage.
 
 ## Website Policy Statement
