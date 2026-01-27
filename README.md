@@ -225,7 +225,7 @@ The pipeline provides detailed logging output:
 2026-01-27 10:35:49 - INFO - Time elapsed: 334.12 seconds
 ```
 
-# Policy Compliance and Ethical Considerations
+## Policy Compliance and Ethical Considerations
 This document outlines the policy statement and compliance measures implemented for an Extract, Transform, Load (ETL) data scraping project targeting the website [https://www.amazon.com/best-sellers](https://www.amazon.com/best-sellers) using Python for scraping and MySQL for data storage.
 
 ## Website Policy Statement
