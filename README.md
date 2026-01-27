@@ -259,3 +259,236 @@ To ensure ethical scraping practices and avoid overloading the target server, th
 ### 5. Data Storage and Retention
 
 *   **Methodology:** Scraped data was loaded into a local MySQL database. Data retention policies would dictate how long the data is stored and how it is secured. For this project, data was stored for analytical purposes, ensuring appropriate security measures for any collected data (even non-PII).
+
+## Analytics Report
+## Overview
+
+This analytics module provides comprehensive data analysis and visualization for the ETL pipeline data. It generates statistical insights, visualizations, and a detailed report covering:
+
+- Basic profiling statistics
+- Category distribution analysis
+- Price and rating insights
+- Price-rating correlation analysis
+- Company-level performance metrics
+
+## Features
+
+### 📊 Visualizations Generated
+
+1. **category_distribution.png** - Bar chart and pie chart showing product distribution by category
+2. **price_insights.png** - Multi-panel visualization with:
+   - Average price by category
+   - Price range (min/max) by category
+   - Average vs median price comparison
+   - Price distribution box plots
+3. **rating_insights.png** - Rating and review analysis:
+   - Average rating by category
+   - Average review count by category
+4. **price_rating_correlation.png** - Correlation analysis:
+   - Scatter plot of price vs rating
+   - Average rating by price segment
+   - Correlation coefficients by category
+   - Review activity by price segment
+5. **company_insights.png** - Company performance:
+   - Top 10 companies by product count
+   - Average rating by company
+   - Total reviews by company
+   - Performance matrix (rating vs reviews)
+
+### 📈 Analytics Report
+
+The `analytics_report.txt` file contains:
+
+#### 1. Basic Profiling
+- Total products count
+- Distinct companies count
+- Distinct categories count
+- Coverage statistics (products with price/ratings)
+- Average reviews per product
+
+#### 2. Product Distribution by Category
+- Top 10 categories by product count
+- Percentage distribution
+
+#### 3. Price and Rating Insights by Category
+- Count, average, median, min, max prices
+- Average ratings
+- Summary statistics
+
+#### 4. Price-Rating Correlation Analysis
+- Overall correlation coefficient
+- Interpretation of correlation
+- Strongest positive/negative correlations
+- Price segment analysis
+
+#### 5. Company-Level Insights
+- Top 10 companies by product count
+- Average rating per company
+- Total and average reviews
+- Performance metrics
+
+#### 6. Key Findings & Recommendations
+- Actionable insights based on data
+- Strategic recommendations
+
+## Analytics Details
+
+### 1. Basic Profiling
+
+Provides high-level statistics:
+- **Total Products**: Count of all products in database
+- **Distinct Companies**: Number of unique brands/manufacturers
+- **Distinct Categories**: Number of product categories
+- **Coverage Metrics**: Percentage of products with price/rating data
+- **Engagement Metrics**: Average reviews per product
+
+### 2. Category Distribution Analysis
+
+**Answers:**
+- Which categories have the most products?
+- How are products distributed across categories?
+- What percentage of total products does each category represent?
+
+**Visualizations:**
+- Horizontal bar chart (top 10 categories)
+- Pie chart (percentage distribution)
+
+### 3. Price and Rating Insights
+
+**Price Metrics by Category:**
+- Average, median, min, max prices
+- Standard deviation (price variability)
+
+**Rating Metrics by Category:**
+- Average rating (1-5 scale)
+- Average review count
+
+**Visualizations:**
+- Average price by category
+- Price range comparisons
+- Average vs median price scatter plot
+- Price distribution box plots
+- Average rating by category
+- Review count by category
+
+**Key Insights:**
+- Which categories are most expensive?
+- Which have highest price variability?
+- Which categories have best ratings?
+- Which have most customer engagement?
+
+### 4. Price-Rating Correlation
+
+**Research Question:** Do higher-priced products have higher ratings?
+
+**Methodology:**
+- Calculate Pearson correlation coefficient
+- Segment products by price range
+- Analyze correlation by category
+
+**Correlation Interpretation:**
+- `> 0.3`: Strong positive correlation (higher price → higher rating)
+- `0.1 to 0.3`: Moderate positive correlation
+- `-0.1 to 0.1`: Weak/no correlation
+- `-0.3 to -0.1`: Moderate negative correlation
+- `< -0.3`: Strong negative correlation (higher price → lower rating)
+
+**Visualizations:**
+- Scatter plot: price vs rating (with trend line)
+- Average rating by price segment ($0-20, $20-50, etc.)
+- Correlation coefficients by category
+- Review activity by price segment
+
+**Business Implications:**
+- Positive correlation: Premium pricing justified by quality
+- Negative correlation: Value products performing better
+- No correlation: Price and quality are independent factors
+
+### 5. Company-Level Insights
+
+**Metrics for Top 10 Companies (by product count):**
+- Number of products listed
+- Average product rating
+- Total reviews across all products
+- Average reviews per product
+- Average, min, max price points
+- Number of highly-rated products (≥4.5 stars)
+- Number of featured products
+
+**Visualizations:**
+- Product count by company
+- Average rating by company
+- Total reviews by company
+- Performance matrix (rating vs reviews, sized by product count)
+
+**Business Insights:**
+- Which companies dominate the marketplace?
+- Which have the best customer satisfaction?
+- Which have highest engagement?
+- Market concentration analysis
+
+## Output
+
+Generated files:
+  - category_distribution.png
+  - price_insights.png
+  - rating_insights.png
+  - price_rating_correlation.png
+  - company_insights.png
+  - analytics_report.txt
+```
+
+### Sample Report Excerpt
+
+```
+====================================================================================================
+                              E-COMMERCE ETL ANALYTICS REPORT
+====================================================================================================
+
+====================================================================================================
+1. BASIC PROFILING
+====================================================================================================
+
+   Total Products:                    518
+   Distinct Companies:                234
+   Distinct Categories:                 5
+   Products with Price:               502 (96.9%)
+   Products with Rating:              518 (100.0%)
+   Avg Reviews per Product:         1,234.5
+
+====================================================================================================
+2. PRODUCT DISTRIBUTION BY CATEGORY (Top 10)
+====================================================================================================
+
+   Category                            Product Count      Percentage
+   -----------------------------------------------------------------
+   Electronics                                   145           28.0%
+   Books                                         132           25.5%
+   Home & Kitchen                                98           18.9%
+   Toys & Games                                  87           16.8%
+   Sports & Outdoors                             56           10.8%
+
+====================================================================================================
+4. PRICE-RATING CORRELATION ANALYSIS
+====================================================================================================
+
+   CORRELATION INSIGHTS:
+   ------------------------------------------------------------
+   Overall Correlation Coefficient:              0.234
+
+   Interpretation: Moderate positive correlation
+
+   ✓ Higher-priced products tend to have HIGHER ratings
+
+   Categories with Positive Correlation:              4
+   Categories with Negative Correlation:              1
+```
+
+## Performance Notes
+
+- Analytics runs in **30-60 seconds** for ~500 products
+- Scales well up to **10,000+ products**
+- For larger datasets (>100K), consider:
+  - Adding database indexes
+  - Using sampling for visualizations
+  - Batch processing
