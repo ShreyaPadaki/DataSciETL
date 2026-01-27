@@ -1,0 +1,130 @@
+====================================================================================================
+                              E-COMMERCE ETL ANALYTICS REPORT
+====================================================================================================
+
+====================================================================================================
+1. BASIC PROFILING
+====================================================================================================
+
+   Total Products:                   1,240
+   Distinct Companies:                 602
+   Distinct Categories:                  7
+   Products with Price:              1,238 (99.8%)
+   Products with Rating:             1,238 (99.8%)
+   Avg Reviews per Product:          235.7
+
+====================================================================================================
+2. PRODUCT DISTRIBUTION BY CATEGORY (Top 10)
+====================================================================================================
+
+   Category                              Product Count      Percentage
+   -----------------------------------------------------------------
+   General                                         422          34.03%
+   Bestsellers                                     375          30.24%
+   Popular                                         203          16.37%
+   Books                                            60           4.84%
+   Electronics                                      60           4.84%
+   Home & Kitchen                                   60           4.84%
+   Sports & Outdoors                                60           4.84%
+
+====================================================================================================
+3. PRICE AND RATING INSIGHTS BY CATEGORY
+====================================================================================================
+
+   Category                Count      Avg $      Med $      Min $      Max $   Avg Rating
+   ------------------------------------------------------------------------------------------
+   General                   422 $    34.68 $    35.96 $    10.02 $    59.95         1.46
+   Bestsellers               375 $    35.72 $    37.34 $    10.00 $    59.92         4.52
+   Popular                   203 $    34.69 $    33.78 $    10.16 $    59.99          3.0
+   Books                      60 $  1166.33 $   953.80 $   271.59 $  3394.94         4.64
+   Electronics                60 $  8961.26 $  2849.46 $   576.22 $ 73215.90         4.53
+   Home & Kitchen             60 $  2343.95 $  1364.40 $   233.98 $ 13761.41         4.53
+   Sports & Outdoors          58 $  2331.09 $  1796.56 $   868.92 $ 12844.78         4.54
+
+   PRICE SUMMARY STATISTICS:
+   ----------------------------------------
+   Overall Average Price:       $   2129.67
+   Overall Median Price:        $    953.80
+   Highest Category Avg:        $   8961.26 (Electronics)
+   Lowest Category Avg:         $     34.68 (General)
+
+   RATING SUMMARY STATISTICS:
+   ----------------------------------------
+   Overall Average Rating:            3.89
+   Highest Rated Category:            4.64 (Books)
+   Lowest Rated Category:             1.46 (General)
+
+====================================================================================================
+4. PRICE-RATING CORRELATION ANALYSIS
+====================================================================================================
+
+   CORRELATION INSIGHTS:
+   ------------------------------------------------------------
+   Overall Correlation Coefficient:              0.165
+
+   Interpretation: Moderate positive correlation
+
+   ✓ Higher-priced products tend to have HIGHER ratings
+
+   Categories with Positive Correlation:             2
+   Categories with Negative Correlation:             4
+
+   Strongest Positive Correlation:
+      Category: Electronics
+      Correlation: 0.280
+
+   Strongest Negative Correlation:
+      Category: Sports & Outdoors
+      Correlation: -0.642
+
+   PRICE SEGMENT ANALYSIS:
+   ------------------------------------------------------------
+   Segment           Avg Rating   Product Count    Avg Price
+   ------------------------------------------------------------
+   $0-20                   2.96             196 $      14.80
+   $20-50                  2.86             606 $      35.14
+   $50-100                 3.08             198 $      54.92
+   $200+                   4.56             236 $    3733.42
+
+====================================================================================================
+5. COMPANY-LEVEL INSIGHTS (Top 10 by Product Count)
+====================================================================================================
+
+   Company                     Products   Avg Rating   Total Reviews  Avg Reviews/Product
+   ----------------------------------------------------------------------------------
+   Generic Publishing House         258         2.94          75,900                  294
+   The Press                         69          2.9          20,000                  290
+   The Publishing                    68         2.91          19,800                  291
+   The Books                         61         3.05          18,600                  305
+   A Publishing                      12          3.0           3,600                  300
+   A Books                            9         2.89           2,600                  289
+   A Press                            7         2.29           1,600                  229
+   Fruits Books                       4          3.5           1,400                  350
+   Harry Press                        4          3.0           1,200                  300
+   The Very Hungry                    4         4.85               0                    0
+
+   COMPANY PERFORMANCE METRICS:
+   ------------------------------------------------------------
+   Most Prolific Company:       Generic Publishing House (258 products)
+   Highest Rated Company:       The Very Hungry (4.85)
+   Most Reviewed Company:       Generic Publishing House (75,900 reviews)
+
+====================================================================================================
+6. KEY FINDINGS & RECOMMENDATIONS
+====================================================================================================
+
+   • Price-Quality Signal: Positive correlation (0.165) suggests customers perceive higher-priced
+     products as better quality. Premium pricing strategy may be justified.
+
+   • Category Concentration: General dominates with 34.0% of products.
+     Consider diversification or capitalize on this strength.
+
+   • Market Concentration: Top 10 companies account for 40.0% of all products.
+     Market shows healthy competition.
+
+   • High Engagement: Average of 236 reviews per product indicates strong customer engagement.
+     Leverage reviews for marketing and product improvement.
+
+====================================================================================================
+END OF REPORT
+====================================================================================================

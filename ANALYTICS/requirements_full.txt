@@ -1,0 +1,19 @@
+# ETL Pipeline Dependencies
+# ========================
+
+# Web scraping
+requests==2.31.0
+beautifulsoup4==4.12.3
+lxml==5.1.0
+
+# Database connectivity
+mysql-connector-python==8.3.0
+
+# Data analysis and visualization
+pandas==2.1.4
+numpy==1.26.2
+matplotlib==3.8.2
+seaborn==0.13.0
+
+# Optional: For better error handling and retries
+urllib3==2.2.0
