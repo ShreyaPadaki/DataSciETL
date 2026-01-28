@@ -13,7 +13,7 @@ DATABASE_CONFIG = {
     'host': 'localhost',
     'database': 'ecommerce_etl',
     'user': 'root',
-    'password': 'Otrera11!',  # REQUIRED: Update with your MySQL password
+    'password': '#Your_Password_Here',  # REQUIRED: Update with your MySQL password
     'port': 3306,
 }
 
