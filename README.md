@@ -1,6 +1,6 @@
 # E-Commerce ETL Pipeline
 
-A comprehensive Python-based ETL (Extract, Transform, Load) pipeline that scrapes product data from Amazon Best Sellers, cleans and transforms the data, and loads it into a normalized MySQL database.
+A comprehensive Python-based ETL (Extract, Transform, Load) pipeline that scrapes product data from Amazon Best Sellers, cleans and transforms the data, and loads it into a normalized MySQL database. Further, a comprehensive data analytics and visualization report is provided.
 
 ## Features
 
@@ -224,7 +224,7 @@ The pipeline provides detailed logging output:
 2026-01-27 10:35:49 - INFO - Total products processed: 518
 2026-01-27 10:35:49 - INFO - Time elapsed: 334.12 seconds
 ```
-## ETL Data Scraping Project: Amazon Best Sellers
+## Policy and Compliance
 
 This document outlines the policy statement and compliance measures implemented for an Extract, Transform, Load (ETL) data scraping project targeting the website [https://www.amazon.com/best-sellers](https://www.amazon.com/best-sellers) using Python for scraping and MySQL for data storage.
 
