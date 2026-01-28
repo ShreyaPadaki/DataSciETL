@@ -796,7 +796,7 @@ if __name__ == "__main__":
         'host': 'localhost',
         'database': 'ecommerce_etl',
         'user': 'root',
-        'password': 'Otrera11!',  # UPDATE THIS WITH YOUR PASSWORD
+        'password': 'Your_Password_Here',  # UPDATE THIS WITH YOUR PASSWORD
     }
     
     # Run ETL pipeline
