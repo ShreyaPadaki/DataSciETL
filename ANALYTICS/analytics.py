@@ -1067,7 +1067,7 @@ def main():
         'host': 'localhost',
         'database': 'ecommerce_etl',
         'user': 'root',
-        'password': 'Otrera11!',  # UPDATE THIS
+        'password': 'Your_Password_Here',  # UPDATE THIS
     }
     
     # Create analytics instance
